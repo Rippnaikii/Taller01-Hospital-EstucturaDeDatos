@@ -22,6 +22,33 @@ void ColaPacientes::ingresar(Paciente* paciente)
     }
 }
 
+bool ColaPacientes::estaVacia()
+{
+    return cabecera == nullptr;
+}
+
+Paciente* ColaPacientes::sacarPaciente()
+{
+    if (estaVacia())
+    {
+        return nullptr;
+    }
+
+    NodoCola* nodoAux = cabecera;
+    Paciente* paciente = nodoAux->getPaciente();
+
+    cabecera = cabecera->getSgte();
+
+    if (cabecera == nullptr)
+    {
+        final = nullptr;
+    }
+
+    delete nodoAux;
+
+    return paciente;
+}
+
 ColaPacientes::~ColaPacientes()
 {}
 
