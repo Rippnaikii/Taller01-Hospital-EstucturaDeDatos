@@ -6,6 +6,22 @@ ColaPacientes::ColaPacientes()
     this->final = nullptr;
 }
 
+void ColaPacientes::ingresar(Paciente* paciente)
+{
+    NodoCola* nuevo = new NodoCola(paciente);
+
+    if (cabecera == nullptr)
+    {
+        cabecera = nuevo;
+        final = nuevo;
+    }
+    else
+    {
+        final->setSgte(nuevo);
+        final = nuevo;
+    }
+}
+
 ColaPacientes::~ColaPacientes()
 {}
 
