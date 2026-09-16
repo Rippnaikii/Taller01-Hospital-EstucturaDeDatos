@@ -3,13 +3,13 @@
 using namespace std;
 class Paciente: public Persona{
 private:
-    int id;
+    string id;
     string servicio;
 public:
-    Paciente(string nombre, int edad, int id, string servicio);
+    Paciente(string nombre, int edad, string id, string servicio);
     string getServicio();
     void setServicio(string servicio);
-    int getId();
-    void setId(int id);
+    string getId();
+    void setId(string id);
     ~Paciente();
 };

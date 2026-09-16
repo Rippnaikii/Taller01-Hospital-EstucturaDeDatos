@@ -1,4 +1,6 @@
 #include "ColaPacientes.hpp"
+#include <iostream>
+using namespace std;
 
 ColaPacientes::ColaPacientes()
 {
@@ -50,7 +52,22 @@ Paciente* ColaPacientes::sacarPaciente()
 }
 
 ColaPacientes::~ColaPacientes()
-{}
+{
+    while (!estaVacia())
+    {
+        Paciente* pacienteActual = sacarPaciente();
+        delete pacienteActual;  //vamos eliminando mientras vamos sacando de la cola.. 
+    }
+}
 
-//Falta implementar sacarPaciente, estaVacia y mostrarCola
-//logica fifo
+void ColaPacientes::mostrarCola(){ 
+    NodoCola* nodoActual = cabecera;
+
+    while(nodoActual != nullptr){
+        Paciente* pacienteActual = nodoActual->getPaciente(); //BUSCAMOS AL PACIENTE, PORQUE ESTABAMOS EN EL NODO SOLAMENTE..
+        cout << "Nombre: " << pacienteActual->getNombre() << ", Edad: " << pacienteActual->getEdad() << ", ID: " << pacienteActual->getId() << ", Servicio: " << pacienteActual->getServicio() << endl;
+        nodoActual = nodoActual->getSgte();
+    
+    }
+}
+

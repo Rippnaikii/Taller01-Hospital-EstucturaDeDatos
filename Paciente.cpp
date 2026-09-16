@@ -1,6 +1,6 @@
 #include "Paciente.hpp"
 
-Paciente::Paciente(string nombre, int edad, int id, string servicio): Persona(nombre, edad)
+Paciente::Paciente(string nombre, int edad, string id, string servicio): Persona(nombre, edad)
 {
     this->id = id;
     this->servicio = servicio;
@@ -17,11 +17,11 @@ void Paciente::setServicio(string servicio)
 {
     this->servicio = servicio;
 }
-int Paciente::getId()
+string Paciente::getId()
 {
     return this->id;
 }
-void Paciente::setId(int id)
+void Paciente::setId(string id)
 {
     this->id = id;
 }
