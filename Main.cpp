@@ -3,6 +3,7 @@
 #include <string>
 #include "ColaPacientes.hpp"
 #include "Seccion.hpp"
+#include "Hospital.hpp"
 using namespace std;
 
 
@@ -63,21 +64,43 @@ int main(int argc, char const *argv[])
 
     filaPacientes.mostrarCola();
 
-    Seccion cardiologia("Cardiologia");
+    Hospital hospital;
+
+    hospital.ingresarSeccion("Urgencias");
+    hospital.ingresarSeccion("Medicina General");
+    hospital.ingresarSeccion("Cardiologia");
+    hospital.ingresarSeccion("Neurologia");
+    hospital.ingresarSeccion("Traumatologia");
+    hospital.ingresarSeccion("Cirugia");
+    hospital.ingresarSeccion("Pediatria");
+    hospital.ingresarSeccion("Hospitalizacion");
+
+    cout << endl;
+    cout << "=== SECCIONES DEL HOSPITAL ===" << endl;
+    hospital.mostrarSecciones();
 
     Paciente* pacienteAtendido = filaPacientes.sacarPaciente();
 
     if (pacienteAtendido != nullptr)
     {
-        cardiologia.ingresarPaciente(pacienteAtendido);
+        Seccion* seccionPaciente = hospital.buscarSeccion(
+            pacienteAtendido->getServicio()
+        );
+
+        if (seccionPaciente != nullptr)
+        {
+            seccionPaciente->ingresarPaciente(pacienteAtendido);
+        }
     }
 
     cout << endl;
-    cout << "Despues de atender un paciente:" << endl;
-    filaPacientes.mostrarCola();
 
-    cout << endl;
-    cardiologia.mostrarEstado();
+    Seccion* cardiologia = hospital.buscarSeccion("Cardiologia");
+
+    if (cardiologia != nullptr)
+    {
+        cardiologia->mostrarEstado();
+    }
 
     return 0;
 }
