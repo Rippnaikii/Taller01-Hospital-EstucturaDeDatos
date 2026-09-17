@@ -79,27 +79,33 @@ int main(int argc, char const *argv[])
     cout << "=== SECCIONES DEL HOSPITAL ===" << endl;
     hospital.mostrarSecciones();
 
-    Paciente* pacienteAtendido = filaPacientes.sacarPaciente();
+    cout << endl;
+    cout << "=== ATENDIENDO 5 PACIENTES ===" << endl;
 
-    if (pacienteAtendido != nullptr)
-    {
-        Seccion* seccionPaciente = hospital.buscarSeccion(
-            pacienteAtendido->getServicio()
-        );
-
-        if (seccionPaciente != nullptr)
-        {
-            seccionPaciente->ingresarPaciente(pacienteAtendido);
-        }
-    }
+    hospital.atenderPacientes(filaPacientes, 5);
 
     cout << endl;
 
     Seccion* cardiologia = hospital.buscarSeccion("Cardiologia");
-
     if (cardiologia != nullptr)
     {
         cardiologia->mostrarEstado();
+    }
+
+    cout << endl;
+
+    Seccion* urgencias = hospital.buscarSeccion("Urgencias");
+    if (urgencias != nullptr)
+    {
+        urgencias->mostrarEstado();
+    }
+
+    cout << endl;
+
+    Seccion* pediatria = hospital.buscarSeccion("Pediatria");
+    if (pediatria != nullptr)
+    {
+        pediatria->mostrarEstado();
     }
 
     return 0;

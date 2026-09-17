@@ -58,6 +58,7 @@ Seccion::~Seccion()
     {
         NodoPaciente* siguiente = nodoActual->getSgte();
 
+        delete nodoActual->getPaciente();
         delete nodoActual;
 
         nodoActual = siguiente;

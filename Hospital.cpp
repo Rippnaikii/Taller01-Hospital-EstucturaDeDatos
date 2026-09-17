@@ -1,4 +1,5 @@
 #include "Hospital.hpp"
+#include "ColaPacientes.hpp"
 #include <iostream>
 
 Hospital::Hospital()
@@ -52,6 +53,36 @@ void Hospital::mostrarSecciones()
     {
         cout << "- " << nodoActual->getSeccion()->getNombre() << endl;
         nodoActual = nodoActual->getSgte();
+    }
+}
+
+void Hospital::atenderPacientes(ColaPacientes& cola, int cantidad)
+{
+    for (int i = 0; i < cantidad; i++)
+    {
+        Paciente* pacienteAtendido = cola.sacarPaciente();
+
+        if (pacienteAtendido == nullptr)
+        {
+            cout << "No quedan pacientes pendientes." << endl;
+            return;
+        }
+
+        Seccion* seccionPaciente = buscarSeccion(
+            pacienteAtendido->getServicio()
+        );
+
+        if (seccionPaciente != nullptr)
+        {
+            seccionPaciente->ingresarPaciente(pacienteAtendido);
+        }
+        else
+        {
+            cout << "Servicio no encontrado: "
+                 << pacienteAtendido->getServicio() << endl;
+
+            delete pacienteAtendido;
+        }
     }
 }
 
