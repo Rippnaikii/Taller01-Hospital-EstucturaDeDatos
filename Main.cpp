@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 #include "ColaPacientes.hpp"
+#include "Seccion.hpp"
 using namespace std;
 
 
@@ -61,6 +62,22 @@ int main(int argc, char const *argv[])
     archivo.close();
 
     filaPacientes.mostrarCola();
+
+    Seccion cardiologia("Cardiologia");
+
+    Paciente* pacienteAtendido = filaPacientes.sacarPaciente();
+
+    if (pacienteAtendido != nullptr)
+    {
+        cardiologia.ingresarPaciente(pacienteAtendido);
+    }
+
+    cout << endl;
+    cout << "Despues de atender un paciente:" << endl;
+    filaPacientes.mostrarCola();
+
+    cout << endl;
+    cardiologia.mostrarEstado();
 
     return 0;
 }

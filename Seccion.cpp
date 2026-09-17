@@ -7,9 +7,7 @@ Seccion::Seccion(string nombre){ // al parecer no es necesario incluir el <strin
 
 string Seccion::getNombre(){return this->nombre;}
 
-void Seccion::ingresarPaciente(Paciente* p){
-    //FALTA ESTO...
-}
+
 void Seccion::mostrarEstado(){
     cout << "=== ESTADO " << this->nombre << " ===" << endl;
     
@@ -52,8 +50,18 @@ void Seccion::ingresarPaciente(Paciente* p){
     }
 }
 
+Seccion::~Seccion()
+{
+    NodoPaciente* nodoActual = this->cabecera;
 
+    while (nodoActual != nullptr)
+    {
+        NodoPaciente* siguiente = nodoActual->getSgte();
 
-Seccion::~Seccion(){
+        delete nodoActual;
 
+        nodoActual = siguiente;
+    }
+
+    this->cabecera = nullptr;
 }
