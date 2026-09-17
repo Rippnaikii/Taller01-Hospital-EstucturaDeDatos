@@ -36,6 +36,24 @@ void Seccion::mostrarEstado(){
 
 }
 
+void Seccion::ingresarPaciente(Paciente* p){
+    NodoPaciente* nuevoNodo = new NodoPaciente(p);
+    
+    // Si la lista está vacía, el nuevo nodo es la cabecera
+    if (this->cabecera == nullptr) {
+        this->cabecera = nuevoNodo;
+    } else {
+        // Si no está vacía, recorremos hasta el final y lo agregamos
+        NodoPaciente* nodoActual = this->cabecera;
+        while (nodoActual->getSgte() != nullptr) {
+            nodoActual = nodoActual->getSgte();
+        }
+        nodoActual->setSgte(nuevoNodo);
+    }
+}
+
+
+
 Seccion::~Seccion(){
 
 }
