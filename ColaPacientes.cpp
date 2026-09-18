@@ -61,13 +61,16 @@ ColaPacientes::~ColaPacientes()
 }
 
 void ColaPacientes::mostrarCola(){ 
+    if (estaVacia()) return;
+    cout << "=== PACIENTES EN ESPERA ===" << endl;
     NodoCola* nodoActual = cabecera;
+    int contador = 1;//para que este como en el ejemplo del taller..
 
-    while(nodoActual != nullptr){
-        Paciente* pacienteActual = nodoActual->getPaciente(); //BUSCAMOS AL PACIENTE, PORQUE ESTABAMOS EN EL NODO SOLAMENTE..
-        cout << "Nombre: " << pacienteActual->getNombre() << ", Edad: " << pacienteActual->getEdad() << ", ID: " << pacienteActual->getId() << ", Servicio: " << pacienteActual->getServicio() << endl;
+    while(nodoActual != nullptr) {
+        Paciente* p = nodoActual->getPaciente(); 
+        cout << contador << ". " << p->getId() << " " << p->getNombre() << endl;
         nodoActual = nodoActual->getSgte();
-    
+        contador++;
     }
 }
 

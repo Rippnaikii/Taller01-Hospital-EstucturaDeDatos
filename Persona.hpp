@@ -14,6 +14,6 @@ public:
     void setNombre(string nombre);
     void setEdad(int edad);
 
-    ~Persona();
+    virtual ~Persona();
 };
 
